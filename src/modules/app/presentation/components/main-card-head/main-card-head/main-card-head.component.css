@@ -16,7 +16,8 @@ p{
 
 h1{
     font-size: xx-large;
-    color: var(--grey_1)
+    color: var(--grey_1);
+    padding: 5px 0;/* vh */
 }
 
 /* Centered text */
@@ -30,3 +31,8 @@ h1{
     justify-content: center;
     align-items: center;
 } 
+
+.location_text{
+    font-size: medium;
+    color: #000;
+}
