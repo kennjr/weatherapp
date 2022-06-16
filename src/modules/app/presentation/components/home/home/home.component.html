@@ -1,8 +1,14 @@
+<ng-container>
+    <form (keyup)="key_has_been_pressed($event.key)">
+        <input class="search_field" type="text" name="search" placeholder="Search city">
+    </form>
+</ng-container>
+
 <div class="container">
     <div class="main_card_head">
         <app-main-card-head></app-main-card-head>
     </div>
-    <ng-container class="main_card_body">
+    <div class="main_card_body">
         <app-main-card-body></app-main-card-body>
-    </ng-container>
+    </div>
 </div>

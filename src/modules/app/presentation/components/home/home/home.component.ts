@@ -12,4 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  key_has_been_pressed(k :string){
+
+  }
 }
