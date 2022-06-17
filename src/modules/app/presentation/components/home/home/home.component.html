@@ -1,8 +1,9 @@
-<ng-container>
+<div class="search_container">
     <form (keyup)="key_has_been_pressed($event.key)">
-        <input class="search_field" type="text" name="search" placeholder="Search city">
+        <input class="search_field" type="text" name="search_string" placeholder="Search city" [(ngModel)]="search_string">
     </form>
-</ng-container>
+    <img title="Press enter to search for the weather of typed city" src="../../../../../../assets/help_white_24dp.svg" alt="help icon">
+</div>
 
 <div class="container">
     <div class="main_card_head">
@@ -11,4 +12,9 @@
     <div class="main_card_body">
         <app-main-card-body></app-main-card-body>
     </div>
+</div>
+
+<div class="nav_options">
+    <button>History</button>
+    <button>Settings</button>
 </div>

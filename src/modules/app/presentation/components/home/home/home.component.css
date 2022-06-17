@@ -3,7 +3,7 @@
 .container{
     width: 25vw;
     height: 75vh;
-    background-color: var(--blue_2);
+    background-color: var(--background-card-dark);
     border-radius: 15px;
     box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
     display: flex;
@@ -29,9 +29,21 @@
     border-bottom-right-radius: 15px;
 }
 
+.search_container{
+    width: 20vw;
+    margin-left: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+
+.search_container img{
+    width: 1.05rem;
+}
+
 .search_field{
     background-color: var(--shadow-dark);
-    width: 20vw;
     border-radius: 50px;
     border-style: solid;
     border-color: grey;
@@ -39,13 +51,45 @@
     justify-self: center;
     border-width: 0.1px;
     padding: 7.5px 10px;
-    margin-bottom: 1vh;
-    margin-left: 2.5vw;
+    margin-right: 2.5px;
     text-align: center;
+    font-size: medium;
 }
 
 input:focus, input:active{
+    color: var(--primary-text-dark);
     border-style: solid;
     border-color: grey;
     outline: none;
+}
+
+.nav_options{
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px 5px;
+}
+
+.nav_options button{
+    width: 40%;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 0;
+    padding: 7.5px 10px;
+    margin: 0 2.5px;
+    background-color: var(--button-bg-dark);
+    text-align: center;
+    color: #000;
+}
+
+.nav_options button:hover{
+    background-color: var(--button-hover);
+    cursor: pointer;
+}
+
+/* changes color of the placeholder text */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--placeholder-text-dark);
+    opacity: 1; /* Firefox */
 }
