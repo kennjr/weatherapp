@@ -2,11 +2,15 @@ p{
     padding: 5px 0;
 }
 
+#more_info_txt{
+    color: var(--primary-text-dark);
+}
+
 .info_container{
     padding: 10px;
     width: 100%;
     height: 85%;
-    background-color: var(--blue_1);
+    background-color: var(--background-main-dark);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     display: grid;
@@ -21,9 +25,19 @@ p{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--primary-text-dark);
+}
+
+.info_grid_item:hover{
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    border-width: 1px;
+    border-style: dashed;
+    border-color: var(--border-color-dark);
 }
 
 .info_descriptive_txt{
     font-size: small;
+    color: var(--secondary-text-dark);
 }
 
