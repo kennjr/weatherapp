@@ -3,10 +3,17 @@
     --blue_1: #3c429e;
     --blue_2: #4c52ad;
     --yellow_1: #fac742;
+    --accent:#FFF759;
     --white: #ffffff;
     --grey_1: #ededed;
     --shadow_dark: rgba(0,0,0,0.3);
     --shadow_light: rgba(255, 255, 255, 0.1);
+
+    /* text colors */
+    --primary-text-dark: #cccccc;
+    --secondary-text-dark: #b3b3b3;
+    --primary-text-light: #262626;
+    --secondary-text-light: #595959;
 }
 
 *{
@@ -21,6 +28,7 @@ body{
     height: 100vh;
     background-color: var(--blue_1);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
