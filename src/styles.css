@@ -4,6 +4,7 @@
     --blue_2: #4c52ad;
     --yellow_1: #fac742;
     --accent:#FFF759;
+    --secondary-accent: #9459FF;
     --white: #ffffff;
     --grey_1: #ededed;
     --shadow_dark: rgba(0,0,0,0.3);
@@ -14,6 +15,26 @@
     --secondary-text-dark: #b3b3b3;
     --primary-text-light: #262626;
     --secondary-text-light: #595959;
+    --placeholder-text-light: #b3b3b3;
+    --placeholder-text-dark: #bfbfbf;
+
+    /* background colors */
+    --background-main-light: #fcfcfc;
+    --background-main-dark: #262626;
+    --background-card-dark: #333333;
+    --background-card-light: #fefffc;
+
+    /* button colors */
+    --button-bg-light: rgba(255, 247, 89, 1);
+    --button-bg-dark: rgba(255, 247, 89, 0.5);
+    --button-hover: rgba(255, 247, 89, 0.75);
+    --button-text-dark: black;
+    --button-text-light: #1a1a1a;
+
+    /* border colors */
+    --border-color-dark: #666666;
+    --border-color-light: #d9d9d9;
+    --border-radius: 15px;
 }
 
 *{
@@ -26,7 +47,7 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100vw;
     height: 100vh;
-    background-color: var(--blue_1);
+    background-color: var(--background-main-dark);
     display: flex;
     flex-direction: column;
     justify-content: center;
