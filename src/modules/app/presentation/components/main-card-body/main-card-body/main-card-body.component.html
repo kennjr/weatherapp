@@ -1,19 +1,19 @@
 <p id="more_info_txt">More information</p>
 <div class="info_container">
     <div title="Wind" class="info_grid_item">
-        <h4>{{ 20.68 | number:'1.0-0' }}</h4>
+        <h4>{{ current_weather.wind_mph }}</h4>
         <p class="info_descriptive_txt">Wind(mph)</p>
     </div>
     <div title="Humidity" class="info_grid_item">
-        <h4>{{ 46.68 | number:'1.0-0' }}</h4>
+        <h4>{{ current_weather.humidity }}</h4>
         <p class="info_descriptive_txt">Humidity</p>
     </div>
     <div title="Pressure" class="info_grid_item">
-        <h4>{{ 1022.68 | number:'1.0-0' }}</h4>
+        <h4>{{ current_weather.pressure_mb }}</h4>
         <p class="info_descriptive_txt">Pressure</p>
     </div>
     <div title="Time" class="info_grid_item">
-        <h4>22:43</h4>
+        <h4>{{ current_location.localtime | date : 'shortTime'}}</h4>
         <p class="info_descriptive_txt">Time</p>
     </div>
 </div>

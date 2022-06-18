@@ -26,6 +26,7 @@ p{
     justify-content: center;
     align-items: center;
     color: var(--primary-text-dark);
+    text-align: center;
 }
 
 .info_grid_item:hover{
