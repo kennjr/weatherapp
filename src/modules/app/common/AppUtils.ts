@@ -1,4 +1,9 @@
 export class AppUtils{
     private static BASE_URL:string= "http://api.weatherapi.com/v1/";
     // searchUrl = `https://api.github.com/search/repositories?q=${trimmedSearchString}`;
+    public static CURRENT_WEATHER_URL :string = `${this.BASE_URL}current.json?`
+    public static FORECAST_WEATHER_URL :string = `${this.BASE_URL}forecast.json?`
+
+    public static WEATHER_HISTORY_URL :string = "http://localhost:5000/weather"
+    public static LOCATION_HISTORY_URL :string = "http://localhost:5000/location"
 }
