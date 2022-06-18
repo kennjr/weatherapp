@@ -35,6 +35,12 @@
     --border-color-dark: #666666;
     --border-color-light: #d9d9d9;
     --border-radius: 15px;
+
+    /* image colors */
+    --text-on-list-item-img-color: #fff;
+
+    /* img filters */
+    --day-img-filter: sepia(100%) saturate(100%) brightness(70%) hue-rotate(360deg);
 }
 
 *{
