@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherCurrent, WeatherLocation } from 'src/modules/app/data/model/weather';
+import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
 
 @Component({
   selector: 'app-history',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class HistoryComponent implements OnInit {
 
   search_string!: string;
-  fake_array: number[] = [1,2,3,4,5,6,7,8,9];
+  
+  search_weather_history!: WeatherCurrent[]
+  search_location_history!: WeatherLocation[]
 
-  constructor() { }
+  constructor(private repo: AppRepo) { }
 
   ngOnInit(): void {
   }
