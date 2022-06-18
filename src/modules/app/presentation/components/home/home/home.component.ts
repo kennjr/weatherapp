@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherCurrent, WeatherLocation } from 'src/modules/app/data/model/weather';
 import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
 
@@ -9,15 +10,24 @@ import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
 })
 export class HomeComponent implements OnInit {
 
+  @Output() onSendCurrentLocation: EventEmitter<WeatherLocation> = new EventEmitter() ;
+  @Output() onSendCurrentWeather: EventEmitter<WeatherCurrent> = new EventEmitter() ;
+
   search_string!:string;
 
   // the location and current
   current_weather!: WeatherCurrent;
   current_location!: WeatherLocation;
 
-  constructor(private repo: AppRepo) { }
+  constructor(private repo: AppRepo, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // default values
+    let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
+
+    let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
+    this.current_location = current_location;
+    this.current_weather = current_weather;
   }
 
   key_has_been_pressed(key :string){
@@ -29,6 +39,13 @@ export class HomeComponent implements OnInit {
       else{
         // TODO show some sort of snackbar that appears from the bottom or bottom-left
       }
+    }
+  }
+
+  navigate_to_diff_page(path: string){
+    // check if the path is empty, so that we don't redirect to the same page
+    if (path.trim() != ""){
+      this.router.navigate([`/${path}`], {relativeTo: this .route})
     }
   }
 
@@ -47,10 +64,20 @@ export class HomeComponent implements OnInit {
         }else{
           // the request was successful
           // set the location and current_weather
-          this.current_location = new WeatherLocation(response_location.name, response_location.country, response_location.lat, response_location.lon, response_location.localtime, response_location.tz_id)
+          // let current_location = new WeatherLocation(response_location.name, response_location.country, response_location.lat, response_location.lon, response_location.localtime, response_location.tz_id)
 
-          this.current_weather = new WeatherCurrent(response_current.temp_c, response_current.temp_f, response_current.is_day, response_current.condition['text'], response_current.wind_kph, response_current.wind_mph, response_current.wind_degree, response_current.wind_dir, response_current.pressure_mb, response_current.pressure_in, response_current.humidity);
+          let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
 
+          // let current_weather = new WeatherCurrent(response_current.temp_c, response_current.temp_f, response_current.is_day, response_current.condition['text'], response_current.wind_kph, response_current.wind_mph, response_current.wind_degree, response_current.wind_dir, response_current.pressure_mb, response_current.pressure_in, response_current.humidity);
+
+          let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
+
+          // after getting the data we emit it to the necessary components
+          this.onSendCurrentLocation.emit(current_location);
+          this.onSendCurrentWeather.emit(current_weather);
+
+          this.current_location = current_location;
+          this.current_weather = current_weather;
         }
       }, 
       // the reason for the request rejection

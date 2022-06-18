@@ -59,8 +59,12 @@
 input:focus, input:active{
     color: var(--primary-text-dark);
     border-style: solid;
-    border-color: grey;
+    border-color: rgb(194, 194, 194);
     outline: none;
+}
+
+input{
+    color: var(--primary-text-dark);
 }
 
 .nav_options{
