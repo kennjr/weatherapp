@@ -1,0 +1,15 @@
+<div class="search_container">
+    
+    <form (keyup)="key_has_been_pressed($event.key)">
+        <input class="search_field" type="text" name="search_string" placeholder="Search history" [(ngModel)]="search_string">
+    </form>
+    <img class="help_icon_img" title="Press enter to search for a city in the history" src="../../../../../../assets/help_white_24dp.svg" alt="help icon">
+</div>
+
+<div class="container">
+    <div class="header_content">
+        <img class="back_arrow_img" title="Press to navigate back to previous page" src="../../../../../../assets/arrow_back_black_24dp.svg" alt="back arrow icon">
+        <p>History</p>
+    </div>
+    
+</div>
