@@ -36,11 +36,11 @@ export class AppRepo{
       return this.history_service.get_single_weather_history(weather)
     }
   
-    add_new_location_to_history(location: WeatherLocation): Observable<WeatherLocation>{
+    add_new_location_to_history(location: WeatherLocation): Promise<WeatherLocation>{
       return this.history_service.add_new_location(location);
     }
   
-    add_new_weather_to_history(weather: WeatherCurrent): Observable<WeatherCurrent>{
+    add_new_weather_to_history(weather: WeatherCurrent): Promise<WeatherCurrent>{
       return this.history_service.add_new_weather(weather);
     }
   
