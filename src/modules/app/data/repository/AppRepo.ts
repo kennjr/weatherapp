@@ -32,7 +32,7 @@ export class AppRepo{
       return this.history_service.get_single_location_history(location)
     }
   
-    get_single_weather_history(weather: WeatherCurrent) :Observable<WeatherLocation>{
+    get_single_weather_history(weather: WeatherCurrent) :Observable<WeatherCurrent>{
       return this.history_service.get_single_weather_history(weather)
     }
   
