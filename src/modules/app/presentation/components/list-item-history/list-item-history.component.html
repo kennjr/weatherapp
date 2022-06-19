@@ -3,13 +3,13 @@
         <div class="img_container">
             <img src="./../../../../../../assets/sky_sunset_1.jpg" alt="image">
             <div class="item_temp_txt">
-                <h2>21&deg;c</h2>
+                <h2>{{weather?.temp_c}}&deg;c</h2>
             </div>
         </div>
         <div class="item_info_container">
-            <h5 class="location_txt">McLean, Virginia</h5>
-            <p class="time_txt">2022-06-18 21:56</p>
+            <h5 class="location_txt">{{ location?.name }}, {{ location.country }}</h5>
+            <p class="time_txt">{{ location?.localtime }}</p>
         </div>
     </div>
-    <img class="delete_record" src="./../../../../../../assets/delete_black_24dp.svg" alt="Delete record">
+    <img class="delete_record" (click)="on_delete_clicked()" src="./../../../../../../assets/delete_black_24dp.svg" alt="Delete record">
 </div>
