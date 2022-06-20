@@ -42,17 +42,14 @@ export class HistoryService {
   }
 
   async add_new_location(location: WeatherLocation): Promise<any>{
-    console.log("The storing ", location)
     try {
       const value = await lastValueFrom(this.http_client.post<WeatherLocation>(AppUtils.LOCATION_HISTORY_URL, location, httpOptions));
-      console.log("The location we store ", value);
     } catch { (error:any) => {
       console.log("An error was caught ", error.toString())
     } }
   }
 
   async add_new_weather(weather: WeatherCurrent): Promise<any>{
-    console.log("The storing ", weather)
     try {
       const value = await lastValueFrom(this.http_client.post<WeatherCurrent>(AppUtils.WEATHER_HISTORY_URL, weather, httpOptions));
       console.log("The weather we store ", value);
@@ -61,16 +58,24 @@ export class HistoryService {
     } }
   }
 
-
-
-  delete_location(location: WeatherLocation): Observable<WeatherLocation>{
-    const location_url = `${AppUtils.WEATHER_HISTORY_URL}/${location.id}`
-    return this.http_client.delete<WeatherLocation>(location_url, httpOptions)
+  async delete_location(location: WeatherLocation): Promise<any>{
+    try {
+      const location_url = `${AppUtils.WEATHER_HISTORY_URL}/${location.id}`
+      const value = await lastValueFrom(this.http_client.delete<WeatherLocation>(location_url, httpOptions));
+      console.log("The location we delete ", value);
+    } catch { (error:any) => {
+      console.log("An error was caught ", error.toString())
+    } }
   }
 
-  delete_weather(weather: WeatherCurrent): Observable<WeatherCurrent>{
-    const weather_url = `${AppUtils.WEATHER_HISTORY_URL}/${weather.id}`
-    return this.http_client.delete<WeatherCurrent>(weather_url, httpOptions)
+  async delete_weather(weather: WeatherCurrent): Promise<any>{
+    try {
+      const weather_url = `${AppUtils.WEATHER_HISTORY_URL}/${weather.id}`
+      const value = await lastValueFrom(this.http_client.delete<WeatherCurrent>(weather_url, httpOptions));
+      console.log("The weather we delete ", value);
+    } catch { (error:any) => {
+      console.log("An error was caught ", error.toString())
+    } }
   }
 
 
