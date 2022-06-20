@@ -34,6 +34,10 @@ export class HistoryService {
       // check if the length is > 10, so that we can trim the array
       if(history_items.length >= 10){
         let oldest_item = history_items.shift()
+        // remove the record from the localStorage too
+        if(oldest_item){
+          this.remove_history_item_from_localStorage(oldest_item);
+        }
         history_items.push(key)
         localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(history_items));
       }
@@ -98,6 +102,30 @@ export class HistoryService {
     // add the key to the keys array
     this.add_item_key_to_keys_array(key)
   }
+
+  remove_record_from_history(key: string){
+    if(key.trim() != ""){
+      this.reomve_history_item_key_from_array(key);
+      this.remove_history_item_from_localStorage(key);
+    }
+  }
+
+  private reomve_history_item_key_from_array(key: string){
+    let history_items = this.get_history_item_keys()
+    if(history_items){
+      let updated_history_items_array = history_items.filter(function(value, index, arr){ 
+        return value != key;
+      });
+      localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(updated_history_items_array));
+    }
+  }
+
+  private remove_history_item_from_localStorage(key: string){
+    localStorage.removeItem(key);
+  }
+
+
+
 
   // the return type is observable, we use that so that we get updates every time shit changes in the db
   get_all_weather_history(): Observable<WeatherCurrentDto[]>{
