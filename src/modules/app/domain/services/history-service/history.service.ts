@@ -6,6 +6,8 @@ import { WeatherCurrentDto } from 'src/modules/app/data/dto/WeatherCurrentDto';
 import { WeatherLocationDto } from 'src/modules/app/data/dto/WeatherLocationDto';
 import { WeatherCurrent, WeatherLocation } from 'src/modules/app/data/model/weather';
 
+import * as moment from 'moment';
+
 // This is needed if we are gon send data to the db or update data that's already in the db
 const httpOptions = {
   headers : new HttpHeaders({
@@ -19,6 +21,38 @@ const httpOptions = {
 export class HistoryService {
 
   constructor(private http_client: HttpClient) { }
+
+  private construct_history_item_key(): string{
+    // we use the current time bc it's a nice way to give a unique key to an item
+    var current_timestamp = moment.now();
+    return current_timestamp.toString()
+  }
+
+  add_item_key_to_keys_array(key: string){
+    let history_items = this.get_history_items()
+    if(history_items){
+      // check if the length is > 10, so that we can trim the array
+      if(history_items.length >= 10){
+        let oldest_item = history_items.shift()
+        history_items.push(key)
+        localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(history_items));
+      }
+    }else{
+      // if the list is empty then we create a new one and add the new item to it
+      let new_items_list = [key]
+      localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(new_items_list));
+    }
+  }
+
+  get_history_items(): Array<string> | null{
+    let items = localStorage.getItem(AppUtils.HISTORY_ITEMS_KEY)
+    if(items){
+      // return JSON.parse(items?items:"")
+      return JSON.parse(items)
+    }else{
+      return null
+    }
+  }
 
   // the return type is observable, we use that so that we get updates every time shit changes in the db
   get_all_weather_history(): Observable<WeatherCurrentDto[]>{
