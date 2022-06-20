@@ -105,12 +105,12 @@ export class HistoryService {
 
   remove_record_from_history(key: string){
     if(key.trim() != ""){
-      this.reomve_history_item_key_from_array(key);
+      this.remove_history_item_key_from_array(key);
       this.remove_history_item_from_localStorage(key);
     }
   }
 
-  private reomve_history_item_key_from_array(key: string){
+  private remove_history_item_key_from_array(key: string){
     let history_items = this.get_history_item_keys()
     if(history_items){
       let updated_history_items_array = history_items.filter(function(value, index, arr){ 
@@ -124,8 +124,30 @@ export class HistoryService {
     localStorage.removeItem(key);
   }
 
+  get_all_history_records(keys_array: Array<string>) :any[]{
+    if(keys_array != null && keys_array.length >= 1){
+      let records_list = []
+      for(let key of keys_array){
+        let record = localStorage.getItem(key)
+        if(record != null){
+          records_list.push(JSON.parse(record))
+        }
+      }
+      return records_list
+    }
+    else{
+      return []
+    }
+  }
 
-
+  get_history_record_from_localStorage(key: string): string | null{
+    let record = localStorage.getItem(key)
+    if(record != null){
+      return record
+    }else{
+      return null
+    }
+  }
 
   // the return type is observable, we use that so that we get updates every time shit changes in the db
   get_all_weather_history(): Observable<WeatherCurrentDto[]>{
