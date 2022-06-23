@@ -26,7 +26,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // make a request for the items, so that we can populate the list
-    this.set_history_recordsd_observable_array()
+    this.set_history_records_observable_array()
     let keys = this.repo.get_all_history_record_keys()
     this.repo.get_all_history_records(keys?keys:[])
   }
@@ -35,13 +35,14 @@ export class HistoryComponent implements OnInit, OnDestroy {
     // best practice
     this.weather_history_subscription.unsubscribe();
     this.location_history_subscription.unsubscribe();
+    this.history_records_subscription.unsubscribe()
   }
 
-  private set_history_recordsd_observable_array(){
+  private set_history_records_observable_array(){
     this.history_records_subscription = this.repo.get_observable_records_list().subscribe({
       next: ((value: any) => {
         this.history_records_array = value;
-        console.log("The values", value[0])
+        
       }),
       error: ((error: any) => {
         // TODO show the user the error msg
@@ -65,11 +66,11 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   delete_item_weather(weather: WeatherCurrent){
     console.log("The delete was clicked ", weather)
-    this.delete_single_item_weather(weather);
+    // this.delete_single_item_weather(weather);
   }
 
   delete_item_location(location: WeatherLocation){
-    this.delete_single_item_location(location)
+    // this.delete_single_item_location(location)
   }
 
   on_back_pressed(){
@@ -80,12 +81,5 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.location.back()
   }
 
-  private delete_single_item_location(location: WeatherLocation){
-    this.repo.delete_location_from_history(location)
-  }
-
-  private delete_single_item_weather(weather: WeatherCurrent){
-    this.repo.delete_weather_from_history(weather)
-  }
 
 }
