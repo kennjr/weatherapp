@@ -4,6 +4,8 @@ export class AppUtils{
     public static CURRENT_WEATHER_URL :string = `${this.BASE_URL}current.json?`
     public static FORECAST_WEATHER_URL :string = `${this.BASE_URL}forecast.json?`
 
-    public static WEATHER_HISTORY_URL :string = "http://localhost:5000/weather"
-    public static LOCATION_HISTORY_URL :string = "http://localhost:5000/location"
+    public static WEATHER_HISTORY_URL :string = "http://localhost:3000/weather"
+    public static LOCATION_HISTORY_URL :string = "http://localhost:3000/location"
+
+    public static HISTORY_ITEMS_KEY :string = "history_items" 
 }
