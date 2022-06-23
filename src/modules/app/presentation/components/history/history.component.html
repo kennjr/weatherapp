@@ -12,7 +12,7 @@
         <p>History</p>
     </div>
     <div >
-        <app-list-item-history *ngFor="let i of search_weather_history; let index = index;" [location]="search_location_history[index]" [weather]="i"></app-list-item-history>
+        <app-list-item-history *ngFor="let i of history_records_array; let index = index;" [location]="i[0].location" [weather]="i[0].weather" (on_delete_location_item)="delete_item_location(i[0].location)" (on_delete_weather_item)="delete_item_weather(i[0].weather)"></app-list-item-history>
        
     </div>
     
