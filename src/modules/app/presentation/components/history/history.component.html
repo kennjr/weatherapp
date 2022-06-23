@@ -11,9 +11,12 @@
         <img class="back_arrow_img" (click)="on_back_pressed()" title="Press to navigate back to previous page" src="../../../../../../assets/arrow_back_black_24dp.svg" alt="back arrow icon">
         <p>History</p>
     </div>
-    <div >
+    <div *ngIf="history_records_array.length >= 1; else showEmptyHistoryMsg">
         <app-list-item-history *ngFor="let i of history_records_array; let index = index;" [location]="i[0].location" [weather]="i[0].weather" (on_delete_location_item)="delete_item_location(i[0].location)" (on_delete_weather_item)="delete_item_weather(i[0].weather)"></app-list-item-history>
-       
     </div>
-    
+    <ng-template #showEmptyHistoryMsg>
+        <p class="info_txt">Your search history is currently empty.</p>
+        <p class="info_txt">Click <a routerLink="/">here</a> for a redirect back to the home page.</p>
+    </ng-template>
+
 </div>
