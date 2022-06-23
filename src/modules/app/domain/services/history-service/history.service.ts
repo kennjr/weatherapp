@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AppUtils } from 'src/modules/app/common/AppUtils';
-import { WeatherCurrentDto } from 'src/modules/app/data/dto/WeatherCurrentDto';
-import { WeatherLocationDto } from 'src/modules/app/data/dto/WeatherLocationDto';
 import { WeatherCurrent, WeatherLocation } from 'src/modules/app/data/model/weather';
 
 import * as moment from 'moment';
@@ -20,7 +18,9 @@ const httpOptions = {
 })
 export class HistoryService {
 
-  constructor(private http_client: HttpClient) { }
+  history_records_array = new BehaviorSubject<any[]>([]);
+
+  constructor() { }
 
   private construct_history_item_key(): string{
     // we use the current time bc it's a nice way to give a unique key to an item
@@ -90,7 +90,7 @@ export class HistoryService {
   }
 
   private construct_history_record_json_string(location: object, weather: object) :string{
-    let item_json_array = [location, weather]
+    let item_json_array = [{"location" : {location}, "weather" : {weather}}]
     // we're returning a string bc that's one of the few types that's accepted by localStorage
     return JSON.stringify(item_json_array)
   }
@@ -101,12 +101,17 @@ export class HistoryService {
     this.add_record_to_storage(location, weather, key)
     // add the key to the keys array
     this.add_item_key_to_keys_array(key)
+    let keys = this.get_history_item_keys()
+    this.get_all_history_records(keys?keys:[])
   }
 
   remove_record_from_history(key: string){
     if(key.trim() != ""){
       this.remove_history_item_key_from_array(key);
       this.remove_history_item_from_localStorage(key);
+      
+      let keys = this.get_history_item_keys()
+      this.get_all_history_records(keys?keys:[])
     }
   }
 
@@ -120,11 +125,11 @@ export class HistoryService {
     }
   }
 
-  private remove_history_item_from_localStorage(key: string){
+  private remove_history_item_from_localStorage(key: string, record?: object){
     localStorage.removeItem(key);
   }
 
-  get_all_history_records(keys_array: Array<string>) :any[]{
+  get_all_history_records(keys_array: Array<string>){
     if(keys_array != null && keys_array.length >= 1){
       let records_list = []
       for(let key of keys_array){
@@ -133,79 +138,21 @@ export class HistoryService {
           records_list.push(JSON.parse(record))
         }
       }
-      return records_list
+      this.history_records_array.next(records_list);
+      // return records_list
     }
     else{
-      return []
+      // return []
     }
   }
 
   get_history_record_from_localStorage(key: string): string | null{
     let record = localStorage.getItem(key)
     if(record != null){
-      return record
+      return JSON.parse(record)
     }else{
       return null
     }
   }
-
-  // the return type is observable, we use that so that we get updates every time shit changes in the db
-  get_all_weather_history(): Observable<WeatherCurrentDto[]>{
-    return this.http_client.get<WeatherCurrentDto[]>(AppUtils.WEATHER_HISTORY_URL, httpOptions)
-  }
-
-  // the return type is observable, we use that so that we get updates every time shit changes in the db
-  // eg: a delete
-  get_all_location_history(): Observable<WeatherLocationDto[]>{
-    return this.http_client.get<WeatherLocationDto[]>(AppUtils.LOCATION_HISTORY_URL, httpOptions)
-  }
-
-  get_single_location_history(location: WeatherLocation) :Observable<WeatherLocation>{
-    const location_url = `${AppUtils.WEATHER_HISTORY_URL}/${location.id}`
-    return this.http_client.get<WeatherLocation>(location_url, httpOptions)
-  }
-
-  get_single_weather_history(weather: WeatherCurrent) :Observable<WeatherCurrent>{
-    const weather_url = `${AppUtils.LOCATION_HISTORY_URL}/${weather.id}`
-    return this.http_client.get<WeatherCurrent>(weather_url, httpOptions)
-  }
-
-  async add_new_location(location: WeatherLocation): Promise<any>{
-    try {
-      const value = await lastValueFrom(this.http_client.post<WeatherLocation>(AppUtils.LOCATION_HISTORY_URL, location, httpOptions));
-    } catch { (error:any) => {
-      console.log("An error was caught ", error.toString())
-    } }
-  }
-
-  async add_new_weather(weather: WeatherCurrent): Promise<any>{
-    try {
-      const value = await lastValueFrom(this.http_client.post<WeatherCurrent>(AppUtils.WEATHER_HISTORY_URL, weather, httpOptions));
-      console.log("The weather we store ", value);
-    } catch { (error:any) => {
-      console.log("An error was caught ", error.toString())
-    } }
-  }
-
-  async delete_location(location: WeatherLocation): Promise<any>{
-    try {
-      const location_url = `${AppUtils.WEATHER_HISTORY_URL}/${location.id}`
-      const value = await lastValueFrom(this.http_client.delete<WeatherLocation>(location_url, httpOptions));
-      console.log("The location we delete ", value);
-    } catch { (error:any) => {
-      console.log("An error was caught ", error.toString())
-    } }
-  }
-
-  async delete_weather(weather: WeatherCurrent): Promise<any>{
-    try {
-      const weather_url = `${AppUtils.WEATHER_HISTORY_URL}/${weather.id}`
-      const value = await lastValueFrom(this.http_client.delete<WeatherCurrent>(weather_url, httpOptions));
-      console.log("The weather we delete ", value);
-    } catch { (error:any) => {
-      console.log("An error was caught ", error.toString())
-    } }
-  }
-
 
 }
