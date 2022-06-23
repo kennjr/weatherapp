@@ -16,43 +16,28 @@ export class AppRepo{
     return this.weather_service.get_current_weather(city);
   }
 
+    // localStorage fun.s
+    get_all_history_record_keys(): string[] | null{
+      return this.history_service.get_history_item_keys()
+    }
 
-    // the return type is observable, we use that so that we get updates every time shit changes in the db
-    get_all_weather_history(): Observable<WeatherCurrent[]>{
-      return this.history_service.get_all_weather_history()
+    get_all_history_records(keys_array: string[]){
+      return this.history_service.get_all_history_records(keys_array)
     }
-  
-    // the return type is observable, we use that so that we get updates every time shit changes in the db
-    // eg: a delete
-    get_all_location_history(): Observable<WeatherLocation[]>{
-      return this.history_service.get_all_location_history()
-    }
-  
-    get_single_location_history(location: WeatherLocation) :Observable<WeatherLocation>{
-      return this.history_service.get_single_location_history(location)
-    }
-  
-    get_single_weather_history(weather: WeatherCurrent) :Observable<WeatherCurrent>{
-      return this.history_service.get_single_weather_history(weather)
-    }
-  
-    add_new_location_to_history(location: WeatherLocation): Promise<WeatherLocation>{
-      return this.history_service.add_new_location(location);
-    }
-  
-    add_new_weather_to_history(weather: WeatherCurrent): Promise<WeatherCurrent>{
-      return this.history_service.add_new_weather(weather);
-    }
-  
-  
-  
-    delete_location_from_history(location: WeatherLocation): Observable<WeatherLocation>{
-      return this.history_service.delete_location(location);
-    }
-  
-    delete_weather_from_history(weather: WeatherCurrent): Observable<WeatherCurrent>{
-      return this.history_service.delete_weather(weather)
-    }
-  
 
+    get_single_history_record(key: string): string | null{
+      return this.history_service.get_history_record_from_localStorage(key)
+    }
+
+    add_new_record_to_history(location: WeatherLocation, weather: WeatherCurrent){
+      return this.history_service.add_record_to_history(location, weather)
+    }
+
+    remove_record_from_localStorage(key: string): any{
+      return this.remove_record_from_localStorage(key)
+    }
+
+    get_observable_records_list(): Observable<any[]>{
+      return this.history_service.history_records_array.asObservable()
+    }
 }
