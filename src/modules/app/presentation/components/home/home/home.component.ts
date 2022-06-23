@@ -23,11 +23,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // default values
-    let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
+    // let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
 
-    let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
-    this.current_location = current_location;
-    this.current_weather = current_weather;
+    // let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
+    // this.current_location = current_location;
+    // this.current_weather = current_weather;
   }
 
   key_has_been_pressed(key :string){
@@ -58,26 +58,32 @@ export class HomeComponent implements OnInit {
         let response_error = response['error']
         let response_current = response['current']
 
+        console.log("response location" ,response_location)
+        console.log("response weather" ,response_current)
+
         if(response_error != null){
           // the request wasn't successful
           // TODO figure out what to do (probably show the user old data or a msg)
         }else{
           // the request was successful
           // set the location and current_weather
-          // let current_location = new WeatherLocation(response_location.name, response_location.country, response_location.lat, response_location.lon, response_location.localtime, response_location.tz_id)
+          let current_location = new WeatherLocation(response_location.name, response_location.country, response_location.lat, response_location.lon, response_location.localtime, response_location.tz_id)
 
-          let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
+          // let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
 
-          // let current_weather = new WeatherCurrent(response_current.temp_c, response_current.temp_f, response_current.is_day, response_current.condition['text'], response_current.wind_kph, response_current.wind_mph, response_current.wind_degree, response_current.wind_dir, response_current.pressure_mb, response_current.pressure_in, response_current.humidity);
+          let current_weather = new WeatherCurrent(response_current.temp_c, response_current.temp_f, response_current.is_day, response_current.condition['text'], response_current.wind_kph, response_current.wind_mph, response_current.wind_degree, response_current.wind_dir, response_current.pressure_mb, response_current.pressure_in, response_current.humidity);
 
-          let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
+          // let current_weather = new WeatherCurrent(18, 71, 0, "Cloudy", 22, 9.8, 210, "NW", 982, 26.3, 38);
 
-          // after getting the data we emit it to the necessary components
-          this.onSendCurrentLocation.emit(current_location);
-          this.onSendCurrentWeather.emit(current_weather);
+          // // after getting the data we emit it to the necessary components
+          // this.onSendCurrentLocation.emit(current_location);
+          // this.onSendCurrentWeather.emit(current_weather);
 
           this.current_location = current_location;
           this.current_weather = current_weather;
+
+          // once we've gotten the result we can add the content to the history
+          this.repo.add_new_record_to_history(current_location, current_weather);
         }
       }, 
       // the reason for the request rejection
