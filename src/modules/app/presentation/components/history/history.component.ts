@@ -16,18 +16,19 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   search_string!: string;
   
-  search_weather_history!: WeatherCurrent[]
-  search_location_history!: WeatherLocation[]
-
   weather_history_subscription!: Subscription;
   location_history_subscription!: Subscription;
+
+  history_records_subscription!: Subscription;
+  history_records_array!: any[]
 
   constructor(private repo: AppRepo, private location: Location) { }
 
   ngOnInit(): void {
     // make a request for the items, so that we can populate the list
-    this.get_all_weather_history()
-    this.get_all_locations_history()
+    this.set_history_recordsd_observable_array()
+    let keys = this.repo.get_all_history_record_keys()
+    this.repo.get_all_history_records(keys?keys:[])
   }
 
   ngOnDestroy(): void {
@@ -36,28 +37,18 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.location_history_subscription.unsubscribe();
   }
 
-  private get_all_weather_history(){
-    // init the sub. var we created
-    this.weather_history_subscription = this.repo.get_all_weather_history().subscribe({
-      next: ((value: WeatherCurrent[]) => {
-        this.search_weather_history = value;
-      }), error: ((error: any) => {
-        // TODO figure out how to show an error msg to the user
-        console.log("We got an error ", error.toString());
-      })})
+  private set_history_recordsd_observable_array(){
+    this.history_records_subscription = this.repo.get_observable_records_list().subscribe({
+      next: ((value: any) => {
+        this.history_records_array = value;
+        console.log("The values", value[0])
+      }),
+      error: ((error: any) => {
+        // TODO show the user the error msg
+      })
+    })
   }
 
-  private get_all_locations_history(){
-    // init the sub. var we created
-    this.location_history_subscription = this.repo.get_all_location_history().subscribe({
-      next: ((value: WeatherLocation[]) => {
-        this.search_location_history = value;
-        console.log("The response ", value)
-      }), error: ((error: any) => {
-        // TODO figure out how to show an error msg to the user
-        console.log("We got an error ", error);
-      })})
-  }
 
   key_has_been_pressed(key :string){
     console.log("The key ", key)
@@ -72,12 +63,29 @@ export class HistoryComponent implements OnInit, OnDestroy {
     }
   }
 
+  delete_item_weather(weather: WeatherCurrent){
+    console.log("The delete was clicked ", weather)
+    this.delete_single_item_weather(weather);
+  }
+
+  delete_item_location(location: WeatherLocation){
+    this.delete_single_item_location(location)
+  }
+
   on_back_pressed(){
     this.navigate_to_prev_page()
   }
 
   private navigate_to_prev_page(){
     this.location.back()
+  }
+
+  private delete_single_item_location(location: WeatherLocation){
+    this.repo.delete_location_from_history(location)
+  }
+
+  private delete_single_item_weather(weather: WeatherCurrent){
+    this.repo.delete_weather_from_history(weather)
   }
 
 }
