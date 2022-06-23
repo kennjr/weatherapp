@@ -76,7 +76,11 @@ input{
     border-top-right-radius: var(--border-radius);
 }
 
-
+.info_txt{
+    text-align: center;
+    color: var(--secondary-text-dark);
+    padding: 1vh 2vw;/* vh */
+}
 
 /* changes color of the placeholder text */
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
