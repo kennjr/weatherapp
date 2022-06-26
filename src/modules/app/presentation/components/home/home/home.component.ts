@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherCurrent, WeatherLocation } from 'src/modules/app/data/model/weather';
 import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
@@ -16,8 +16,12 @@ export class HomeComponent implements OnInit {
   current_location!: WeatherLocation;
 
   constructor(private repo: AppRepo, private router: Router, private route: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
+    this.search_string = this.repo.get_recently_searched_city()
+    if (this.search_string.trim() != ""){
+      this.make_search_request(this.search_string)
+    }
     // default values
     // let current_location = new WeatherLocation("Gaborone", "Botswana", 53, -12, "2022-06-19 21:34", "Africa")
 
@@ -80,6 +84,7 @@ export class HomeComponent implements OnInit {
 
           // once we've gotten the result we can add the content to the history
           this.repo.add_new_record_to_history(current_location, current_weather);
+          this.repo.set_recently_search_city(this.search_string)
         }
       }, 
       // the reason for the request rejection
