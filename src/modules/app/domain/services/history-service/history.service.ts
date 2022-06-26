@@ -40,6 +40,9 @@ export class HistoryService {
         }
         history_items.push(key)
         localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(history_items));
+      }else{
+        history_items.push(key)
+        localStorage.setItem(AppUtils.HISTORY_ITEMS_KEY, JSON.stringify(history_items));
       }
     }else{
       // if the list is empty then we create a new one and add the new item to it
@@ -90,7 +93,7 @@ export class HistoryService {
   }
 
   private construct_history_record_json_string(location: object, weather: object) :string{
-    let item_json_array = [{"location" : {location}, "weather" : {weather}}]
+    let item_json_array = [{location}, {weather}]
     // we're returning a string bc that's one of the few types that's accepted by localStorage
     return JSON.stringify(item_json_array)
   }
