@@ -1,6 +1,8 @@
 .container{
     width: 25vw;
     height: 75vh;
+    max-height: 75vh;
+    min-height: 75vh;
     background-color: var(--background-card-dark);
     border-radius: 15px;
     box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
@@ -80,6 +82,11 @@ input{
     text-align: center;
     color: var(--secondary-text-dark);
     padding: 1vh 2vw;/* vh */
+}
+
+.list_container{
+    /* This will give us the automatic style for the site if the elements are more than the available space, providing a scrollbar only for the height */
+    overflow-y: auto;
 }
 
 /* changes color of the placeholder text */
