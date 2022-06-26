@@ -40,4 +40,14 @@ export class AppRepo{
     get_observable_records_list(): Observable<any[]>{
       return this.history_service.history_records_array.asObservable()
     }
+
+
+    
+    set_recently_search_city(city_str: string){
+      this.weather_service.store_recent_search_string(city_str);
+    }
+
+    get_recently_searched_city(): string{
+      return this.weather_service.get_recent_search_string()
+    }
 }
