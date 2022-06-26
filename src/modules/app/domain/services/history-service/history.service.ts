@@ -87,13 +87,13 @@ export class HistoryService {
       "tz_id": location.tz_id
     }
 
-    let string_history_record = this.construct_history_record_json_string(local_location, local_weather)
+    let string_history_record = this.construct_history_record_json_string(key, local_location, local_weather)
     // store the record
     localStorage.setItem(key, string_history_record)
   }
 
-  private construct_history_record_json_string(location: object, weather: object) :string{
-    let item_json_array = [{location}, {weather}]
+  private construct_history_record_json_string(key: string, location: object, weather: object) :string{
+    let item_json_array = [key, {location}, {weather}]
     // we're returning a string bc that's one of the few types that's accepted by localStorage
     return JSON.stringify(item_json_array)
   }
