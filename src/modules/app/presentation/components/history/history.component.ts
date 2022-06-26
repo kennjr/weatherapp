@@ -33,9 +33,16 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // best practice
-    this.weather_history_subscription.unsubscribe();
-    this.location_history_subscription.unsubscribe();
-    this.history_records_subscription.unsubscribe()
+    if (this.weather_history_subscription){
+      this.weather_history_subscription.unsubscribe();
+    }
+    if (this.history_records_subscription){
+      this.history_records_subscription.unsubscribe()
+    }
+    if (this.location_history_subscription){
+      this.location_history_subscription.unsubscribe();
+    }
+    
   }
 
   private set_history_records_observable_array(){
