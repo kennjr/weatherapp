@@ -8,4 +8,8 @@ export class AppUtils{
     public static LOCATION_HISTORY_URL :string = "http://localhost:3000/location"
 
     public static HISTORY_ITEMS_KEY :string = "history_items" 
+
+    public static RECENTLY_SEARCHED_CITY_KEY: string = "recent_city"
+
+    public static DEFAULT_CITY: string = "Nairobi"
 }
