@@ -9,10 +9,6 @@ import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  @Output() onSendCurrentLocation: EventEmitter<WeatherLocation> = new EventEmitter() ;
-  @Output() onSendCurrentWeather: EventEmitter<WeatherCurrent> = new EventEmitter() ;
-
   search_string!:string;
 
   // the location and current
