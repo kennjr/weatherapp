@@ -49,7 +49,6 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.history_records_subscription = this.repo.get_observable_records_list().subscribe({
       next: ((value: any) => {
         this.history_records_array = value;
-        
       }),
       error: ((error: any) => {
         // TODO show the user the error msg
@@ -71,13 +70,9 @@ export class HistoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  delete_item_weather(weather: WeatherCurrent){
-    console.log("The delete was clicked ", weather)
+  delete_history_item(key: string){
+    console.log("The delete was clicked ", key)
     // this.delete_single_item_weather(weather);
-  }
-
-  delete_item_location(location: WeatherLocation){
-    // this.delete_single_item_location(location)
   }
 
   on_back_pressed(){
