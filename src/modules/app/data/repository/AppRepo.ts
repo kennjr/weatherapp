@@ -34,7 +34,7 @@ export class AppRepo{
     }
 
     remove_record_from_localStorage(key: string): any{
-      return this.remove_record_from_localStorage(key)
+      return this.history_service.remove_record_from_history(key)
     }
 
     get_observable_records_list(): Observable<any[]>{
