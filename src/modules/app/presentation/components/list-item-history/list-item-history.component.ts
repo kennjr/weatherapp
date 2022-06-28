@@ -18,7 +18,6 @@ export class ListItemHistoryComponent implements OnInit {
   constructor(private repo: AppRepo) { }
 
   ngOnInit(): void {
-    console.log("location", this.location.location.name)
   }
 
   on_delete_clicked(){
