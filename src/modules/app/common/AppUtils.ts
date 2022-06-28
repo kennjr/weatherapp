@@ -12,4 +12,6 @@ export class AppUtils{
     public static RECENTLY_SEARCHED_CITY_KEY: string = "recent_city"
 
     public static DEFAULT_CITY: string = "Nairobi"
+
+    public static ALPHABET_PATTERN = "/^[A-Z]+$/i"
 }
