@@ -16,5 +16,5 @@
 
 <div class="nav_options">
     <button (click)="navigate_to_diff_page('history')">History</button>
-    <button (click)="navigate_to_diff_page('settings')">Settings</button>
+    <button *ngIf="1>2" (click)="navigate_to_diff_page('settings')">Settings</button>
 </div>
