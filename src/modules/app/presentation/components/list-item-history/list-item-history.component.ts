@@ -14,6 +14,7 @@ export class ListItemHistoryComponent implements OnInit {
   @Input() key!: string;
 
   @Output() on_delete_item: EventEmitter<string> = new EventEmitter()
+  @Output() on_click_item: EventEmitter<string> = new EventEmitter()
 
   constructor(private repo: AppRepo) { }
 
@@ -24,8 +25,16 @@ export class ListItemHistoryComponent implements OnInit {
     this.delete_item()
   }
 
+  on_item_clicked(){
+    this.click_item()
+  }
+
   private delete_item(){
     console.log("Delete clicked ")
     this.on_delete_item.emit(this.key);
+  }
+
+  private click_item(){
+    this.on_click_item.emit(this.key)
   }
 }
