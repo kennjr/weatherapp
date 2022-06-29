@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppUtils } from 'src/modules/app/common/AppUtils';
 import { AppRepo } from 'src/modules/app/data/repository/AppRepo';
@@ -22,7 +23,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   search_str_pattern_checker = RegExp(AppUtils.ALPHABET_PATTERN)
 
-  constructor(private repo: AppRepo, private location: Location) { }
+  constructor(private repo: AppRepo, private location: Location, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // make a request for the items, so that we can populate the list
@@ -80,6 +81,13 @@ export class HistoryComponent implements OnInit, OnDestroy {
     console.log("The delete was clicked ", key)
     // this.delete_single_item_weather(weather);
     this.repo.remove_record_from_localStorage(key)
+  }
+
+  navigate_to_item_view(key: string){
+    // check if the path is empty, so that we don't redirect to the same page
+    if (key.trim() != ""){
+      this.router.navigate([`/history/${key}`], {relativeTo: this.route})
+    }
   }
 
   on_back_pressed(){
