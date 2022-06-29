@@ -1,5 +1,5 @@
 <div *ngIf="location && weather" class="item_main_container">
-    <div class="item_details_container">
+    <div class="item_details_container" (click)="on_item_clicked()">
         <div class="img_container">
             <img src="./../../../../../../assets/sky_sunset_1.jpg" alt="image">
             <div class="item_temp_txt">
