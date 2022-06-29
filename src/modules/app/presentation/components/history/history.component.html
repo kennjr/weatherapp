@@ -12,7 +12,7 @@
         <p>History</p>
     </div>
     <div class="list_container" *ngIf="history_records_array.length >= 1; else showEmptyHistoryMsg">
-        <app-list-item-history *ngFor="let i of filtered_history_records_array; let index = index;"     [location]="i[1]" [weather]="i[2]" [key]="i[0]" (on_delete_item)="delete_history_item(i[0])"></app-list-item-history>
+        <app-list-item-history *ngFor="let i of filtered_history_records_array; let index = index;"     [location]="i[1]" [weather]="i[2]" [key]="i[0]" (on_delete_item)="delete_history_item(i[0])" (on_click_item)="navigate_to_item_view(i[0])"></app-list-item-history>
     </div>
     <ng-template #showEmptyHistoryMsg>
         <p class="info_txt">Your search history is currently empty.</p>
