@@ -1,7 +1,8 @@
 <div *ngIf="location && weather" class="item_main_container">
     <div class="item_details_container" (click)="on_item_clicked()">
         <div class="img_container">
-            <img src="./../../../../../../assets/sky_sunset_1.jpg" alt="image">
+            <img *ngIf="weather?.weather.is_day == 1" src="./../../../../../../assets/sky_sunset_1.jpg" alt="image" class="day_img">
+            <img *ngIf="weather?.weather.is_day == 0" src="./../../../../../../assets/sky_night_2.jpg" alt="image" class="night_img">
             <div class="item_temp_txt">
                 <h2>{{weather?.weather.temp_c | number:'2.0-0'}}&deg;c</h2>
             </div>
