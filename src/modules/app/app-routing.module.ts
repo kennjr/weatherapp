@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   // { path: 'settings', component:SettingsComponent },
   { path: 'history', component: HistoryComponent},
+  { path: '**', component: HomeComponent },
   { path: 'history/:key', component: HisotryItemFullComponent},
 ];
 
