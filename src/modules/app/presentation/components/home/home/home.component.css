@@ -97,3 +97,70 @@ input{
     color: var(--placeholder-text-dark);
     opacity: 1; /* Firefox */
 }
+
+/* Styling for the phone */
+@media only screen and (max-width: 540px) { 
+    /* Here are some changes*/
+    .container{
+        width: 75vw;
+        height: 60vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 75vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+    
+}
+
+/* Styling for the phone */
+@media only screen and (min-width: 541px) and (max-width: 800px) { 
+    /* Here are some changes*/
+
+    .container{
+        width: 50vw;
+        height: 65vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+}
+
+/* Styling for the phone */
+@media only screen 
+    and (min-width: 801px)
+    and (max-width: 1200px) { 
+    /* Here are some changes*/
+    .container{
+        width: 40vw;
+        height: 75vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 40vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+}
