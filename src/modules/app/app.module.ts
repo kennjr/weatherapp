@@ -13,6 +13,7 @@ import { WeatherDataPipe } from './domain/pipes/weather-data/weather-data.pipe';
 import { SettingsComponent } from './presentation/components/settings/settings.component';
 import { HistoryComponent } from './presentation/components/history/history.component';
 import { ListItemHistoryComponent } from './presentation/components/list-item-history/list-item-history.component';
+import { HisotryItemFullComponent } from './presentation/components/hisotry-item-full/hisotry-item-full.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListItemHistoryComponent } from './presentation/components/list-item-hi
     WeatherDataPipe,
     SettingsComponent,
     HistoryComponent,
-    ListItemHistoryComponent
+    ListItemHistoryComponent,
+    HisotryItemFullComponent
   ],
   imports: [
     BrowserModule,
