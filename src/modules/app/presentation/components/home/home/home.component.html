@@ -1,0 +1,20 @@
+<div class="search_container">
+    <form (keyup)="key_has_been_pressed($event.key)">
+        <input class="search_field" type="text" name="search_string" placeholder="Search city" [(ngModel)]="search_string">
+    </form>
+    <img title="Press enter to search for the weather of typed city" src="../../../../../../assets/help_white_24dp.svg" alt="help icon">
+</div>
+
+<div class="container">
+    <div class="main_card_head">
+        <app-main-card-head [current_location]="current_location" [current_weather]="current_weather"></app-main-card-head>
+    </div>
+    <div class="main_card_body">
+        <app-main-card-body [current_location]="current_location" [current_weather]="current_weather"></app-main-card-body>
+    </div>
+</div>
+
+<div class="nav_options">
+    <button (click)="navigate_to_diff_page('history')">History</button>
+    <button *ngIf="1>2" (click)="navigate_to_diff_page('settings')">Settings</button>
+</div>

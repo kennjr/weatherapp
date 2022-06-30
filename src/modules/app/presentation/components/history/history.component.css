@@ -1,0 +1,166 @@
+.container{
+    width: 25vw;
+    height: 75vh;
+    max-height: 75vh;
+    min-height: 75vh;
+    background-color: var(--background-card-dark);
+    border-radius: 15px;
+    box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.search_container{
+    width: 20vw;
+    margin-left: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+
+.help_icon_img{
+    width: 1.0rem;
+}
+
+.back_arrow_img{
+    width: 1.75rem;
+    margin: 0 10px;
+    padding: 1.75px;
+}
+
+.back_arrow_img:hover{
+    cursor: pointer;
+}
+
+.back_arrow_img:active{
+    border-radius: 50px;
+    border-style: none;
+    background-color: var(--button-hover);
+}
+
+.search_field{
+    background-color: var(--shadow-dark);
+    border-radius: 50px;
+    border-style: solid;
+    border-color: grey;
+    align-self: center;
+    justify-self: center;
+    border-width: 0.1px;
+    padding: 7.5px 10px;
+    margin-right: 2.5px;
+    text-align: center;
+    font-size: medium;
+}
+
+input:focus, input:active{
+    color: var(--primary-text-dark);
+    border-style: solid;
+    border-color: rgb(194, 194, 194);
+    outline: none;
+}
+
+input{
+    color: var(--primary-text-dark);
+}
+
+.header_content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 3.5%;
+    color: #a6a6a6;
+    font-size: large;
+    background-color: var(--background-card-dark);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.info_txt{
+    text-align: center;
+    color: var(--secondary-text-dark);
+    padding: 1vh 2vw;/* vh */
+}
+
+.list_container{
+    /* This will give us the automatic style for the site if the elements are more than the available space, providing a scrollbar only for the height */
+    overflow-y: auto;
+}
+
+/* changes color of the placeholder text */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--placeholder-text-dark);
+    opacity: 1; /* Firefox */
+}
+
+/* Styling for the phone */
+@media only screen and (max-width: 540px) { 
+    /* Here are some changes*/
+    .container{
+        width: 75vw;
+        height: 60vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .search_container{
+        width: 60vw;
+        margin-left: 7.5vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vh;
+    }
+    
+}
+
+/* Styling for the phone */
+@media only screen and (min-width: 541px) and (max-width: 800px) { 
+    /* Here are some changes*/
+
+    .container{
+        width: 50vw;
+        height: 65vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .search_container{
+        width: 40vw;
+        margin-left: 5vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vh;
+    }
+}
+
+/* Styling for the phone */
+@media only screen 
+    and (min-width: 801px)
+    and (max-width: 1200px) { 
+    /* Here are some changes*/
+    .container{
+        width: 40vw;
+        height: 75vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .search_container{
+        width: 32vw;
+        margin-left: 4vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vh;
+    }
+}

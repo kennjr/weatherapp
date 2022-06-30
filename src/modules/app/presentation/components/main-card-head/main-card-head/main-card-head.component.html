@@ -1,0 +1,7 @@
+<img *ngIf="current_weather.is_day == 1" src="./../../../../../../assets/sky_sunset_1.jpg" alt="image">
+<img *ngIf="current_weather.is_day == 0" src="./../../../../../../assets/sky_night_2.jpg" alt="image">
+<div class="head_weather_data">
+    <p class="location_text">{{ current_location.name }}</p>
+    <h1 class="temperature_text">{{ current_weather.temp_c }}&deg;c</h1>
+    <p class="location_text">{{current_weather.condition_txt}}</p>
+</div>

@@ -1,0 +1,164 @@
+.container{
+    width: 25vw;
+    height: 75vh;
+    background-color: var(--background-card-dark);
+    border-radius: 15px;
+    box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.main_card_head{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 45%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.main_card_body{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 55%;
+    padding: 5px 7.5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.search_container{
+    width: 20vw;
+    margin-left: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+
+.search_container img{
+    width: 1.05rem;
+}
+
+.search_field{
+    background-color: var(--shadow-dark);
+    border-radius: 50px;
+    border-style: solid;
+    border-color: grey;
+    align-self: center;
+    justify-self: center;
+    border-width: 0.1px;
+    padding: 7.5px 10px;
+    margin-right: 2.5px;
+    text-align: center;
+    font-size: medium;
+}
+
+input:focus, input:active{
+    color: var(--primary-text-dark);
+    border-style: solid;
+    border-color: rgb(194, 194, 194);
+    outline: none;
+}
+
+input{
+    color: var(--primary-text-dark);
+}
+
+.nav_options{
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px 5px;
+}
+
+.nav_options button{
+    width: 40%;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 0;
+    padding: 7.5px 10px;
+    margin: 0 2.5px;
+    background-color: var(--button-bg-dark);
+    text-align: center;
+    color: #000;
+}
+
+.nav_options button:hover{
+    background-color: var(--button-hover);
+    cursor: pointer;
+}
+
+/* changes color of the placeholder text */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--placeholder-text-dark);
+    opacity: 1; /* Firefox */
+}
+
+/* Styling for the phone */
+@media only screen and (max-width: 540px) { 
+    /* Here are some changes*/
+    .container{
+        width: 75vw;
+        height: 60vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 75vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+    
+}
+
+/* Styling for the phone */
+@media only screen and (min-width: 541px) and (max-width: 800px) { 
+    /* Here are some changes*/
+
+    .container{
+        width: 50vw;
+        height: 65vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+}
+
+/* Styling for the phone */
+@media only screen 
+    and (min-width: 801px)
+    and (max-width: 1200px) { 
+    /* Here are some changes*/
+    .container{
+        width: 40vw;
+        height: 75vh;
+        background-color: var(--background-card-dark);
+        border-radius: 15px;
+        box-shadow: 7.5px 7.5px 7.5px var(--shadow-dark);
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_options{
+        width: 40vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5px 5px;
+    }
+}
