@@ -24,11 +24,19 @@
     margin-right: 10px;
 }
 
-.img_container img{
+
+
+.day_img{
     width: 100%;
     height: 100%;
-    border-radius: var(--border-radius);
-    filter: var(--day-img-filter);
+    border-radius: 10px;
+    
+}
+
+.night_img{
+    width: 100%;
+    height: 8.5vh;
+    border-radius: 10px;
 }
 
 .item_temp_txt {
@@ -53,4 +61,91 @@
 
 .delete_record:hover{
     cursor: pointer;
+}
+
+/* Styling for the phone */
+@media only screen and (max-width: 540px) { 
+    /* Here are some changes*/
+    .item_main_container{
+        width: 75vw;
+        padding: 1% 2.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .night_img{
+        width: 100%;
+        height: 8.5vh;
+        border-radius: 10px;
+    }
+}
+
+/* Styling for the phone */
+@media only screen and (min-width: 541px) and (max-width: 650px) { 
+    /* Here are some changes*/
+    .item_main_container{
+        width: 50vw;
+        padding: 1% 2.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .night_img{
+        width: 100%;
+        height: 7.5vh;
+        border-radius: 10px;
+    }
+}
+
+@media only screen and (min-width: 651px) and (max-width: 800px) { 
+    /* Here are some changes*/
+    .item_main_container{
+        width: 50vw;
+        padding: 1% 2.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .night_img{
+        width: 100%;
+        height: 8vh;
+        border-radius: 10px;
+    }
+}
+
+/* Styling for the phone */
+@media only screen 
+    and (min-width: 801px)
+    and (max-width: 1000px) { 
+    /* Here are some changes*/
+    .item_main_container{
+        width: 40vw;
+        padding: 1% 2.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .night_img{
+        width: 100%;
+        height: 8.25vh;
+        border-radius: 10px;
+    }
+}
+
+@media only screen 
+    and (min-width: 1001px)
+    and (max-width: 1200px) { 
+    .item_main_container{
+        width: 40vw;
+        padding: 1% 2.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .night_img{
+        width: 100%;
+        height: 9.75vh;
+        border-radius: 10px;
+    }
+    
 }
